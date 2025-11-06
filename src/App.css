@@ -7,6 +7,6 @@
 
 .grid {
   display: grid;
-  grid: repeat(3, auto) / auto-flow auto;
+  grid: auto-flow auto / repeat(3, auto);
   gap: 1rem;
 }

@@ -12,7 +12,11 @@ const generatedGridCells: ReactNode[] = [];
 
 for (let i = 0; i < grid.length; i++) {
   for (let j = 0; j < grid[i].length; j++) {
-    generatedGridCells.push(<img src="/tile.svg" />);
+    if (grid[i][j]) {
+      generatedGridCells.push(<img src="/wrong_tile.svg" />);
+    } else {
+      generatedGridCells.push(<img src="/tile.svg" />);
+    }
   }
 }
 
