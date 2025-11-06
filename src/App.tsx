@@ -9,13 +9,17 @@ const initialGrid = [
 ];
 
 function App() {
+  const [spy, spyMove] = useState([1, 2]);
+
   const [grid, setGrid] = useState(initialGrid);
 
   const generatedGridCells: ReactNode[] = [];
 
   for (let i = 0; i < grid.length; i++) {
     for (let j = 0; j < grid[i].length; j++) {
-      if (grid[i][j]) {
+      if (grid[i][j] && i === spy[0] && j === spy[1]) {
+        generatedGridCells.push(<img key={`${i}${j}`} src="/spy_tile.svg" />);
+      } else if (grid[i][j]) {
         generatedGridCells.push(<img key={`${i}${j}`} src="/wrong_tile.svg" />);
       } else {
         generatedGridCells.push(
