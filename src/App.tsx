@@ -9,9 +9,12 @@ const initialGrid = [
 ];
 
 function App() {
-  const [spy, spyMove] = useState([1, 2]);
-
   const [grid, setGrid] = useState(initialGrid);
+
+  const [spy, spyMove] = useState([
+    Math.floor(Math.random() * grid.length),
+    Math.floor(Math.random() * grid[0].length),
+  ]);
 
   const generatedGridCells: ReactNode[] = [];
 
