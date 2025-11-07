@@ -9,6 +9,8 @@ const initialGrid = [
 ];
 
 function App() {
+  const [gameOver, setGameOver] = useState(false);
+
   const [grid, setGrid] = useState(initialGrid);
 
   const [spy, spyMove] = useState([
@@ -30,7 +32,9 @@ function App() {
             key={`${i}${j}`}
             src="/tile.svg"
             onClick={() => {
-              flipTile(i, j);
+              if (!gameOver) {
+                flipTile(i, j);
+              }
             }}
           />
         );
@@ -39,6 +43,10 @@ function App() {
   }
 
   function flipTile(i: number, j: number) {
+    if (i === spy[0] && j === spy[1]) {
+      setGameOver(true);
+    }
+
     const newGrid = [...grid];
     newGrid[i][j] = !newGrid[i][j];
     setGrid(newGrid);
@@ -48,6 +56,7 @@ function App() {
     <>
       <h1>Where in the world is...</h1>
       <div className="grid">{generatedGridCells}</div>
+      {gameOver ? <h2>You found the Spy!</h2> : null}
     </>
   );
 }
