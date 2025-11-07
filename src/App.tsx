@@ -13,7 +13,7 @@ function App() {
 
   const [grid, setGrid] = useState(initialGrid);
 
-  const [spy, spyMove] = useState([
+  const [spy, setSpyCoords] = useState([
     Math.floor(Math.random() * grid.length),
     Math.floor(Math.random() * grid[0].length),
   ]);
@@ -47,9 +47,18 @@ function App() {
       setGameOver(true);
     }
 
-    const newGrid = [...grid];
+    const newGrid = structuredClone(grid);
     newGrid[i][j] = !newGrid[i][j];
     setGrid(newGrid);
+  }
+
+  function restartGame() {
+    setGameOver(false);
+    setGrid(initialGrid);
+    setSpyCoords([
+      Math.floor(Math.random() * grid.length),
+      Math.floor(Math.random() * grid[0].length),
+    ]);
   }
 
   return (
@@ -57,6 +66,7 @@ function App() {
       <h1>Where in the world is...</h1>
       <div className="grid">{generatedGridCells}</div>
       {gameOver ? <h2>You found the Spy!</h2> : null}
+      {gameOver ? <button onClick={restartGame}>Restart Game</button> : null}
     </>
   );
 }
