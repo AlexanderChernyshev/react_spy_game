@@ -14,3 +14,6 @@ Otherwise, you get an x.
 The game will give you a hint about how far away from the spy you were.
 The spy will move if you miss. They can move to any adjacent tile that was near them.
 The spy can't move diagonally however.
+
+### Play it here:
+https://react-spy-game.pages.dev/
