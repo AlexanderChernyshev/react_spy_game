@@ -18,6 +18,8 @@ function App() {
     Math.floor(Math.random() * grid[0].length),
   ]);
 
+  const [hint, setHint] = useState(0);
+
   const generatedGridCells: ReactNode[] = [];
 
   for (let i = 0; i < grid.length; i++) {
@@ -104,9 +106,18 @@ function App() {
       setSpyCoords(spyConfirmMove(spyCheckValidMoves(i, j)));
     }
 
+    hintCalc(i, j);
+
     const newGrid = structuredClone(grid);
     newGrid[i][j] = !newGrid[i][j];
     setGrid(newGrid);
+  }
+
+  function hintCalc(i: number, j: number) {
+    const xDistance = Math.abs(spy[0] - i);
+    const yDistance = Math.abs(spy[1] - j);
+    const spyDistance = xDistance + yDistance;
+    setHint(spyDistance);
   }
 
   function restartGame() {
@@ -122,6 +133,7 @@ function App() {
     <>
       <h1>Where in the world is...</h1>
       <div className="grid">{generatedGridCells}</div>
+      {hint > 0 ? <p>You were {hint} tiles away from the spy.</p> : null}
       {gameOver ? <h2>You found the Spy!</h2> : null}
       {/* This prints the spy's coords for debugging pruposes
        <h2>
