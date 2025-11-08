@@ -10,3 +10,7 @@
   grid: auto-flow auto / repeat(3, auto);
   gap: 1rem;
 }
+
+.grid svg {
+  max-width: 5rem;
+}
