@@ -11,6 +11,7 @@
   gap: 1rem;
 }
 
-.grid svg {
-  max-width: 5rem;
+.grid img {
+  max-width: 100%;
+  height: auto;
 }
